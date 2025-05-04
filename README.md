@@ -43,10 +43,10 @@ Make sure the smile.png file is placed inside an images/ folder.
 ## Getting Started
 To play the game locally:
 
-Clone the repository or download the source code.
+1. Clone the repository or download the source code.
 
-Ensure you have a folder named images with smile.png inside.
+2. Ensure you have a folder named images with smile.png inside.
 
-Open index.html in your browser.
+3. Open matching-game.html in your browser.
 
-Start playing and challenge your focus!
+4. Start playing and challenge your focus!
