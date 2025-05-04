@@ -31,7 +31,7 @@ A fun and interactive web-based game where your goal is to spot the extra smilin
 * JavaScript for game logic and interactivity
 
 ## Folder Structure
-
+```bash
 /matching-game
 │
 ├── matching-game.html        # Main game file
@@ -39,7 +39,7 @@ A fun and interactive web-based game where your goal is to spot the extra smilin
 │   └── smile.png     # Image used for smiling faces
 ├── README.md         # Project documentation
 Make sure the smile.png file is placed inside an images/ folder.
-
+```
 ## Getting Started
 To play the game locally:
 
