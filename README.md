@@ -1,7 +1,7 @@
-### 🎯 Matching Game
+# 🎯 Matching Game
 A fun and interactive web-based game where your goal is to spot the extra smiling face on the left side. This game challenges your visual memory and attention as the difficulty increases.
 
-🕹️ How to Play
+## How to Play
 Choose a difficulty level: Easy, Normal, or Hard.
 
 A set of smiling faces will appear on both sides of the screen.
@@ -12,7 +12,7 @@ Each correct click adds more faces, increasing the challenge.
 
 Clicking the wrong face ends the game.
 
-### 📦 Features
+## Features
  Visually engaging interface
 
  Restart functionality
@@ -31,12 +31,10 @@ CSS3 for styling
 JavaScript for game logic and interactivity
 
 ### Folder Structure
-bash
-Copy
-Edit
+
 /matching-game
 │
-├── index.html        # Main game file
+├── matching-game.html        # Main game file
 ├── images/
 │   └── smile.png     # Image used for smiling faces
 ├── README.md         # Project documentation
