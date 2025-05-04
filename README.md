@@ -2,26 +2,26 @@
 A fun and interactive web-based game where your goal is to spot the extra smiling face on the left side. This game challenges your visual memory and attention as the difficulty increases.
 
 ## How to Play
-Choose a difficulty level: Easy, Normal, or Hard.
+1. Choose a difficulty level: Easy, Normal, or Hard.
 
-A set of smiling faces will appear on both sides of the screen.
+2. A set of smiling faces will appear on both sides of the screen.
 
-One extra face appears only on the left side—click it to progress!
+3. One extra face appears only on the left side—click it to progress!
 
-Each correct click adds more faces, increasing the challenge.
+4. Each correct click adds more faces, increasing the challenge.
 
-Clicking the wrong face ends the game.
+5. Clicking the wrong face ends the game.
 
 ## Features
- Visually engaging interface
+ * Visually engaging interface
 
- Restart functionality
+ * Restart functionality
 
- Attempt counter to track your performance
+ * Attempt counter to track your performance
 
- Difficulty selection
+ * Difficulty selection
 
- Progressive levels that increase in difficulty
+ * Progressive levels that increase in difficulty
 
 ### Technologies Used
 HTML5 for structure
