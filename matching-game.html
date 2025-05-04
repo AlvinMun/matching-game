@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Matching Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #2e8b57;
+        }
+        p {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        #gameContainer {
+            display: flex;
+            justify-content: center;
+            margin: 20px auto;
+            position: relative;
+            width: 1000px;
+        }
+        #leftSide, #rightSide {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #rightSide {
+            border-left: none;
+        }
+        img {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.1s;
+            width: 100px;
+            height: 100px;
+        }
+        img:hover {
+            transform: scale(1.1);
+        }
+        #counter {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2e8b57;
+            margin: 10px 0;
+        }
+        #restartButton {
+            display: none;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #2e8b57;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #restartButton:hover {
+            background-color: #3cb371;
+        }
+        #modeSelection {
+            margin: 20px 0;
+        }
+        .modeButton {
+            padding: 8px 15px;
+            margin: 0 5px;
+            background-color: #4682b4;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .modeButton:hover {
+            background-color: #5f9ea0;
+        }
+        #footer {
+            margin-top: auto;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Matching Game</h1>
+    <p>Click on the extra smiling face on the left.</p>
+    <div id="modeSelection">
+        <p>Select difficulty:</p>
+        <button class="modeButton" data-difficulty="2">Easy</button>
+        <button class="modeButton" data-difficulty="5">Normal</button>
+        <button class="modeButton" data-difficulty="8">Hard</button>
+    </div>
+    <div id="counter">Attempts: 0</div>
+    <div id="gameContainer">
+        <div id="leftSide"></div>
+        <div id="rightSide"></div>
+    </div>
+    <button id="restartButton">Play Again</button>
+    <div id="footer">Made by Alvin Mun</div>
+    
+    <script>
+        let numberOfFaces = 5;
+        let attempts = 0;
+        let gameActive = false;
+        const theLeftSide = document.getElementById('leftSide');
+        const theRightSide = document.getElementById('rightSide');
+        const counterDisplay = document.getElementById('counter');
+        const restartButton = document.getElementById('restartButton');
+        const modeSelection = document.getElementById('modeSelection');
+        
+        // Hide game elements initially
+        theLeftSide.style.display = 'none';
+        theRightSide.style.display = 'none';
+        counterDisplay.style.display = 'none';
+        
+        // Set up mode selection buttons
+        document.querySelectorAll('.modeButton').forEach(button => {
+            button.addEventListener('click', function() {
+                numberOfFaces = parseInt(this.getAttribute('data-difficulty'));
+                modeSelection.style.display = 'none';
+                theLeftSide.style.display = 'block';
+                theRightSide.style.display = 'block';
+                counterDisplay.style.display = 'block';
+                gameActive = true;
+                generateFaces();
+            });
+        });
+        
+        // Set up restart button
+        restartButton.addEventListener('click', function() {
+            // Reset game state
+            attempts = 0;
+            counterDisplay.textContent = `Attempts: ${attempts}`;
+            restartButton.style.display = 'none';
+            modeSelection.style.display = 'block';
+            theLeftSide.style.display = 'none';
+            theRightSide.style.display = 'none';
+            counterDisplay.style.display = 'none';
+            gameActive = false;
+            
+            // Clear both sides
+            theLeftSide.innerHTML = '';
+            theRightSide.innerHTML = '';
+        });
+        
+        function generateFaces() {
+            counterDisplay.textContent = `Attempts: ${attempts}`;
+            
+            // Clear existing faces
+            theLeftSide.innerHTML = '';
+            theRightSide.innerHTML = '';
+            
+            // Create left side faces
+            const leftFaces = [];
+            for (let i = 0; i < numberOfFaces; i++) {
+                const face = document.createElement('img');
+                face.src = 'images/smile.png';
+                face.alt = 'Smiling face';
+
+                const randomTop = Math.floor(Math.random() * 400);
+                const randomLeft = Math.floor(Math.random() * 400);
+                face.style.top = randomTop + 'px';
+                face.style.left = randomLeft + 'px';
+                theLeftSide.appendChild(face);
+                leftFaces.push(face);
+            }
+            
+            // Create right side faces (missing one random face)
+            const faceToRemoveIndex = Math.floor(Math.random() * leftFaces.length);
+            const correctFace = leftFaces[faceToRemoveIndex];
+            
+            for (let i = 0; i < leftFaces.length; i++) {
+                if (i !== faceToRemoveIndex) {
+                    const face = leftFaces[i].cloneNode();
+                    theRightSide.appendChild(face);
+                }
+            }
+
+            // Add click handlers
+            leftFaces.forEach(face => {
+                face.addEventListener('click', function(e) {
+                    if (!gameActive) return;
+                    e.stopPropagation();
+                    
+                    attempts++;
+                    counterDisplay.textContent = `Attempts: ${attempts}`;
+                    
+                    if (face === correctFace) {
+                        nextLevel();
+                    } else {
+                        gameOver();
+                    }
+                });
+            });
+        }
+
+        function nextLevel() {
+            numberOfFaces += 5;
+            generateFaces();
+        }
+
+        function gameOver() {
+            gameActive = false;
+            alert(`Game Over! You made ${attempts} attempts.`);
+            restartButton.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
