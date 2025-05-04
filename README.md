@@ -23,14 +23,14 @@ A fun and interactive web-based game where your goal is to spot the extra smilin
 
  * Progressive levels that increase in difficulty
 
-### Technologies Used
-HTML5 for structure
+## Technologies Used
+* HTML5 for structure
 
-CSS3 for styling
+* CSS3 for styling
 
-JavaScript for game logic and interactivity
+* JavaScript for game logic and interactivity
 
-### Folder Structure
+## Folder Structure
 
 /matching-game
 │
@@ -40,7 +40,7 @@ JavaScript for game logic and interactivity
 ├── README.md         # Project documentation
 Make sure the smile.png file is placed inside an images/ folder.
 
-### Getting Started
+## Getting Started
 To play the game locally:
 
 Clone the repository or download the source code.
